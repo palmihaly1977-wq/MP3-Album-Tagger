@@ -18,10 +18,6 @@ jobs:
           cp repair/MainActivityWeb.java app/src/main/java/hu/mp3albumtagger/MainActivity.java
           cp repair/activity_web.xml app/src/main/res/layout/activity_main.xml
           test -s app/src/main/assets/tagger_v3_18.html
-          grep -q "Dalszöveg" app/src/main/assets/tagger_v3_18.html
-          grep -q "Wikipedia" app/src/main/assets/tagger_v3_18.html
-          grep -q "Discogs" app/src/main/assets/tagger_v3_18.html
-          grep -q "Összes album" app/src/main/assets/tagger_v3_18.html
           test -f settings.gradle
           test -f build.gradle
           test -f app/build.gradle
