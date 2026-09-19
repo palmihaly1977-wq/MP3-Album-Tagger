@@ -17,7 +17,6 @@ jobs:
           find app/src/main/java/hu/mp3albumtagger -type f -name '*.java' -delete
           cp repair/MainActivityWeb.java app/src/main/java/hu/mp3albumtagger/MainActivity.java
           cp repair/activity_web.xml app/src/main/res/layout/activity_main.xml
-          cp repair/tagger_v3_38.html app/src/main/assets/tagger_v3_18.html
           test -s app/src/main/assets/tagger_v3_18.html
       - uses: actions/setup-java@v4
         with:
