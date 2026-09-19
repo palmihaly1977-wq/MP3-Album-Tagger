@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:scrollbars="vertical">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="MP3 Album Tagger" android:textSize="28sp" android:textStyle="bold"/>
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Android v0.85 • albumok rendezése és teljes metaadat-kezelés" android:textSize="15sp" android:paddingBottom="18dp"/>
+
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="1. GYŰJTEMÉNY" android:textSize="20sp" android:textStyle="bold" android:paddingTop="8dp" android:paddingBottom="8dp"/>
+  <Button android:id="@+id/pickFolder" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ZENEI MAPPA KIVÁLASZTÁSA"/>
+  <Button android:id="@+id/scanFolder" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="MP3-AK ÉS ALBUMOK BEOLVASÁSA"/>
+  <TextView android:id="@+id/scanStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Még nincs beolvasott gyűjtemény." android:padding="10dp"/>
+
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="2. ONLINE AZONOSÍTÁS ÉS METAADATOK" android:textSize="20sp" android:textStyle="bold" android:paddingTop="18dp" android:paddingBottom="8dp"/>
+  <Button android:id="@+id/searchAlbums" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ÖSSZES ALBUM KERESÉSE"/>
+  <TextView android:id="@+id/searchStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Albumkeresés: még nem futott." android:padding="10dp"/>
+  <Button android:id="@+id/fetchMetadata" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="DALSZÖVEG + WIKIPEDIA + DISCOGS – EGY GOMBBAL"/>
+  <TextView android:id="@+id/metadataStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Metaadatok: még nem futott." android:padding="10dp"/>
+
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="3. DISCOGS" android:textSize="20sp" android:textStyle="bold" android:paddingTop="18dp" android:paddingBottom="8dp"/>
+  <EditText android:id="@+id/discogsToken" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Discogs API token (csak ezen az eszközön)" android:inputType="textPassword"/>
+  <Button android:id="@+id/saveDiscogsToken" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="DISCOGS TOKEN MENTÉSE"/>
+
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="4. ELLENŐRZÉS ÉS MENTÉS" android:textSize="20sp" android:textStyle="bold" android:paddingTop="18dp" android:paddingBottom="8dp"/>
+  <Button android:id="@+id/pickSaveFolder" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="MENTÉSI MAPPA KIVÁLASZTÁSA ELŐRE"/>
+  <TextView android:id="@+id/saveFolderStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mentési mappa még nincs kiválasztva." android:padding="10dp"/>
+  <Button android:id="@+id/savePreview" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="MENTÉSI ELŐNÉZET / ELLENŐRZÉSI ÖSSZESÍTŐ"/>
+  <Button android:id="@+id/exportCopies" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="ÖSSZES ID3 BEÍRÁSA / MP3-MÁSOLATOK"/>
+  <Button android:id="@+id/retryFailed" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="CSAK A HIBÁS MP3-AK ÚJRAPRÓBÁLÁSA"/>
+  <Button android:id="@+id/newSaveSession" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="ÚJ MENTÉSI SESSION"/>
+
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ALBUMOK ÉS SZÁMOK" android:textSize="20sp" android:textStyle="bold" android:paddingTop="22dp"/>
+  <TextView android:id="@+id/results" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" android:textIsSelectable="true" android:paddingTop="10dp" android:paddingBottom="72dp"/>
+ </LinearLayout>
+</ScrollView>
