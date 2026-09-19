@@ -15,6 +15,7 @@ jobs:
           cat payload/v083_00.b64 payload/v083_01.b64 payload/v083_02.b64 payload/v083_03.b64 payload/v083_04.b64 payload/v083_05.b64 payload/v083_06.b64 payload/v083_07.b64 | base64 -d > appbuild.zip
           unzip -q -o appbuild.zip || test $? -eq 2
           cp repair/Id3v24Writer.java app/src/main/java/hu/mp3albumtagger/Id3v24Writer.java
+          cp repair/activity_main.xml app/src/main/res/layout/activity_main.xml
           test -f settings.gradle
           test -f build.gradle
           test -f app/build.gradle
