@@ -10,35 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Restore Android project
+      - name: Restore Android project and full tested HTML UI
         run: |
           cat payload/v083_00.b64 payload/v083_01.b64 payload/v083_02.b64 payload/v083_03.b64 payload/v083_04.b64 payload/v083_05.b64 payload/v083_06.b64 payload/v083_07.b64 | base64 -d > appbuild.zip
           unzip -q -o appbuild.zip || test $? -eq 2
           cp repair/Id3v24Writer.java app/src/main/java/hu/mp3albumtagger/Id3v24Writer.java
-          cp repair/activity_main_v085.xml app/src/main/res/layout/activity_main.xml
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path("app/src/main/res/layout/activity_main.xml")
-          s=p.read_text()
-          # Compatibility IDs expected by the production MainActivity.
-          aliases={
-            'scanStatus':'status','results':'result','metadataStatus':'dashboard',
-            'saveFolderStatus':'saveStatus','savePreview':'previewSave',
-            'exportCopies':'executeSave','retryFailed':'retryFailedSave',
-            'fetchMetadata':'fetchAllMetadata'
-          }
-          for new,old in aliases.items():
-              s=s.replace('@+id/'+new,'@+id/'+old)
-          # MainActivity also renders the album list and search progress separately.
-          marker='<TextView android:id="@+id/result"'
-          extra='<TextView android:id="@+id/searchProgress" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp"/><TextView android:id="@+id/albumList" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp"/>'
-          s=s.replace(marker,extra+marker)
-          p.write_text(s)
-          PY
+          cp repair/MainActivityWeb.java app/src/main/java/hu/mp3albumtagger/MainActivity.java
+          cp repair/activity_web.xml app/src/main/res/layout/activity_main.xml
+          test -s app/src/main/assets/tagger_v3_18.html
+          grep -q "Dalszöveg" app/src/main/assets/tagger_v3_18.html
+          grep -q "Wikipedia" app/src/main/assets/tagger_v3_18.html
+          grep -q "Discogs" app/src/main/assets/tagger_v3_18.html
+          grep -q "Összes album" app/src/main/assets/tagger_v3_18.html
           test -f settings.gradle
           test -f build.gradle
           test -f app/build.gradle
-          test -s app/src/main/java/hu/mp3albumtagger/Id3v24Writer.java
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
