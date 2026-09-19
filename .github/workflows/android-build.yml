@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Restore Android project
+        run: |
+          test -f bootstrap/chunk_aa.b64
+          base64 -d bootstrap/chunk_aa.b64 > appbuild.zip
+          unzip -q -o appbuild.zip
+          test -f settings.gradle
+          test -f build.gradle
+          test -f app/build.gradle
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
