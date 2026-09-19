@@ -36,10 +36,8 @@ public class MainActivity extends Activity {
    @Override public boolean onShowFileChooser(WebView v,ValueCallback<Uri[]> cb,FileChooserParams p){
     if(files!=null)files.onReceiveValue(null);
     files=cb;
-    Intent i=new Intent(Intent.ACTION_OPEN_DOCUMENT);
-    i.addCategory(Intent.CATEGORY_OPENABLE);
-    i.setType("*/*");
-    i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
+    Intent i=new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+    i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
     try{startActivityForResult(i,FILES);}catch(Exception e){files=null;return false;}
     return true;
    }
@@ -54,10 +52,11 @@ public class MainActivity extends Activity {
   if(request!=FILES||files==null)return;
   Uri[] out=null;
   if(result==RESULT_OK&&data!=null){
-   if(data.getClipData()!=null){
-    int n=data.getClipData().getItemCount();out=new Uri[n];
-    for(int i=0;i<n;i++)out[i]=data.getClipData().getItemAt(i).getUri();
-   }else if(data.getData()!=null)out=new Uri[]{data.getData()};
+   if(data.getData()!=null){
+    Uri u=data.getData();
+    try{getContentResolver().takePersistableUriPermission(u, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);}catch(Exception ignored){}
+    out=new Uri[]{u};
+   }
   }
   files.onReceiveValue(out);files=null;
  }
