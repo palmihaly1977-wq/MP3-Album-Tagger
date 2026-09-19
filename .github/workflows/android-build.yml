@@ -16,6 +16,25 @@ jobs:
           unzip -q -o appbuild.zip || test $? -eq 2
           cp repair/Id3v24Writer.java app/src/main/java/hu/mp3albumtagger/Id3v24Writer.java
           cp repair/activity_main_v085.xml app/src/main/res/layout/activity_main.xml
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("app/src/main/res/layout/activity_main.xml")
+          s=p.read_text()
+          # Compatibility IDs expected by the production MainActivity.
+          aliases={
+            'scanStatus':'status','results':'result','metadataStatus':'dashboard',
+            'saveFolderStatus':'saveStatus','savePreview':'previewSave',
+            'exportCopies':'executeSave','retryFailed':'retryFailedSave',
+            'fetchMetadata':'fetchAllMetadata'
+          }
+          for new,old in aliases.items():
+              s=s.replace('@+id/'+new,'@+id/'+old)
+          # MainActivity also renders the album list and search progress separately.
+          marker='<TextView android:id="@+id/result"'
+          extra='<TextView android:id="@+id/searchProgress" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp"/><TextView android:id="@+id/albumList" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp"/>'
+          s=s.replace(marker,extra+marker)
+          p.write_text(s)
+          PY
           test -f settings.gradle
           test -f build.gradle
           test -f app/build.gradle
