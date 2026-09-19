@@ -39,7 +39,13 @@ public class MainActivity extends Activity {
   s.setBuiltInZoomControls(true); s.setDisplayZoomControls(false); s.setSupportZoom(true);
   s.setUseWideViewPort(true); s.setLoadWithOverviewMode(false); s.setTextZoom(100);
   web.addJavascriptInterface(new MetalArchivesBridge(),"MetalArchivesNative");
-  web.setWebViewClient(new WebViewClient());
+  web.setWebViewClient(new WebViewClient(){
+   @Override public void onPageFinished(WebView v,String url){
+    super.onPageFinished(v,url);
+    String js="(function(){window.fetchMetalArchivesLyrics=async function(artist,album,title){try{if(!window.MetalArchivesNative)return '';var r=JSON.parse(MetalArchivesNative.lyrics(String(artist||''),String(title||'')));if(!r.ok)return '';var d=document.createElement('textarea');d.innerHTML=String(r.lyricsHtml||'').replace(/<br\\s*\\/?>/gi,'\\n');return d.value.replace(/<[^>]+>/g,'').trim();}catch(e){return '';}};window.METAL_ARCHIVES_NATIVE=true;})();";
+    v.evaluateJavascript(js,null);
+   }
+  });
   web.setWebChromeClient(new WebChromeClient(){
    @Override public boolean onShowFileChooser(WebView v,ValueCallback<Uri[]> cb,FileChooserParams p){
     if(files!=null)files.onReceiveValue(null); files=cb;
