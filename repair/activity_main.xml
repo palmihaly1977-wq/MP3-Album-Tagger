@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    android:overScrollMode="always">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="MP3 Album Tagger – Android v0.84" android:textSize="24sp"
+            android:textStyle="bold" android:paddingBottom="12dp"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Részletes MP3/ID3 beolvasás kész ✓" android:textSize="17sp" android:paddingBottom="12dp"/>
+        <Button android:id="@+id/pickFolder" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ZENEI MAPPA KIVÁLASZTÁSA"/>
+        <Button android:id="@+id/scanFolder" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="MP3-AK ÉS ALBUMOK BEOLVASÁSA"/>
+        <EditText android:id="@+id/discogsToken" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:hint="Discogs API token (helyben tárolva)" android:inputType="textPassword"/>
+        <Button android:id="@+id/saveDiscogsToken" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="DISCOGS TOKEN MENTÉSE"/>
+        <Button android:id="@+id/pickSaveFolder" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="MENTÉSI MAPPA KIVÁLASZTÁSA ELŐRE"/>
+        <TextView android:id="@+id/saveFolderStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mentési mappa korábbról engedélyezve ✓" android:textSize="16sp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+        <Button android:id="@+id/savePreview" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="MENTÉSI ELŐNÉZET"/>
+        <Button android:id="@+id/exportCopies" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="ID3 / MP3-MÁSOLATOK MENTÉSE"/>
+        <Button android:id="@+id/newSaveSession" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="ÚJ MENTÉSI SESSION"/>
+        <Button android:id="@+id/retryFailed" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="CSAK A HIBÁS MP3-AK ÚJRAPRÓBÁLÁSA"/>
+        <Button android:id="@+id/fetchMetadata" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="ÖSSZES METAADAT LEKÉRÉSE"/>
+        <TextView android:id="@+id/metadataStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Állapot: még nincs feldolgozott album." android:textSize="16sp" android:padding="10dp"/>
+        <Button android:id="@+id/searchAlbums" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="ÖSSZES ALBUM KERESÉSE"/>
+        <TextView android:id="@+id/searchStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Albumkeresés: még nem futott." android:textSize="16sp" android:padding="10dp"/>
+        <TextView android:id="@+id/results" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" android:textIsSelectable="true" android:paddingBottom="48dp"/>
+    </LinearLayout>
+</ScrollView>
